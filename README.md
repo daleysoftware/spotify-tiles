@@ -1,4 +1,4 @@
-Spotify Tiles
+Tiles
 ===
 
 Tiles allows you to view the album art of your favorite artists in full-screen, tiled across your browser.
