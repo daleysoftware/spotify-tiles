@@ -19,6 +19,6 @@ TODO
 
 This is a work in progress.
 
-Login using oAuth2 is done (copied from the Spotify template); still need to complete the actual queries for tiles and visualization (possibly using d3).
+I still need to complete the actual frontend; the backend work is done.
 
 README.md will be updated as this work is completed.
