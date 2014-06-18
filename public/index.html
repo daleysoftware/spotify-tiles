@@ -32,9 +32,9 @@
 
     <body>
         <div id="login">
-            <h1>Sign In to Spotify Tiles</h1>
+            <h1>Welcome to Spotify Tiles</h1>
             <br/>
-            <p><a href="/login" class="btn btn-primary">Log in with Spotify</a></p>
+            <p><a href="/login" class="btn btn-primary">Authorize with Spotify</a></p>
         </div>
         <div class="container">
             <div id="loggedin">
@@ -82,9 +82,7 @@
                         userProfilePlaceholder = document.getElementById('user-profile');
 
                 var params = getHashParams();
-
-                var access_token = params.access_token
-                        refresh_token = params.refresh_token;
+                var access_token = params.access_token;
 
                 if (access_token) {
                     $('#login').hide();

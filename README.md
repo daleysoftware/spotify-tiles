@@ -19,6 +19,7 @@ TODO
 
 This is a work in progress.
 
-I still need to complete the actual frontend; the backend work is done.
+* Still need to complete the actual frontend (the backend work is done).
+* Use session instead of `access_token` URL parameter.
 
 README.md will be updated as this work is completed.
