@@ -4,10 +4,10 @@
         <title>Spotify Tiles</title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-		<link rel="stylesheet" type="text/css" href="http://vnjs.net/www/project/freewall/example/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="http://vnjs.net/www/project/freewall/example/css/pinterest-style.css" />
+        <link rel="stylesheet" type="text/css" href="http://vnjs.net/www/project/freewall/example/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="http://vnjs.net/www/project/freewall/example/css/pinterest-style.css" />
 
-		<script type="text/javascript" src="http://vnjs.net/www/project/freewall/example/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="http://vnjs.net/www/project/freewall/example/js/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="http://vnjs.net/www/project/freewall/freewall.js"></script>
         
         <style type="text/css">
@@ -37,17 +37,17 @@
             #freewall {
                 margin: 15px;
             }
-			.free-wall {
-				margin: 15px;
-			}
-			.brick {
-				width: 221.2px;
-			}
-			.brick img {
-				margin: 0px;
-				padding: 0px;
-				display: block;
-			}
+            .free-wall {
+                margin: 15px;
+            }
+            .brick {
+                width: 221.2px;
+            }
+            .brick img {
+                margin: 0px;
+                padding: 0px;
+                display: block;
+            }
         </style>
     </head>
 
@@ -59,7 +59,7 @@
         <div id="spinner">
             <h1>Loading, please wait. This might take a minute or two...</h1>
         </div>
-		<div id="freewall" class="free-wall"></div>
+        <div id="freewall" class="free-wall"></div>
 
         <script>
             (function() {
@@ -94,16 +94,16 @@
                                 html += '<div class="brick"><img src=' + url + ' width="100%"></div>'
                             });
                             document.getElementById('freewall').innerHTML = html;
-			                var wall = new freewall("#freewall");
-			                wall.reset({
-				                selector: '.brick',
-				                animate: true,
-				                cellW: 200,
-				                cellH: 'auto',
-				                onResize: function() {
-					                wall.fitWidth();
-				                }
-			                });
+                            var wall = new freewall("#freewall");
+                            wall.reset({
+                                selector: '.brick',
+                                animate: true,
+                                cellW: 200,
+                                cellH: 'auto',
+                                onResize: function() {
+                                    wall.fitWidth();
+                                }
+                            });
                             wall.fitWidth();
                             $('#spinner').hide();
                             $('#freewall').show();
