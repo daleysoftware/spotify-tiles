@@ -38,7 +38,7 @@
         </div>
         <div class="container">
             <div id="loggedin">
-                <!-- TODO replace with tiles, etc. -->
+                <!-- TODO replace with tiles/visualization, etc. -->
                 <div id="user-profile"></div>
             </div>
         </div>
@@ -89,7 +89,6 @@
                 if (access_token) {
                     $('#login').hide();
                     $.ajax({
-                        // TODO GET tiles instead of user info. Create custom call in app.js.
                         url: 'https://api.spotify.com/v1/me',
                         headers: {
                             'Authorization': 'Bearer ' + access_token
@@ -97,6 +96,17 @@
                         success: function(response) {
                             userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                             $('#loggedin').show();
+                        }
+                    });
+
+                    $.ajax({
+                        url: '/tiles',
+                        data: {
+                            access_token: access_token
+                        },
+                        success: function(response) {
+                            // TODO need to do something with these images...
+                            console.log(response);
                         }
                     });
                 } else {
