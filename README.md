@@ -1,7 +1,7 @@
 Spotify Tiles
 ===
 
-Tiles allows you to view the album art of your favorite artists in full-screen, tiled across your browser.
+Tiles lets you to view the album art of your favorite Spotify artists in full-screen, tiled across your browser. 
 
 Albums covers are selected at random using the user's public playlists.
 
