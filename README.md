@@ -6,7 +6,7 @@ Spotify Tiles allows you to view the album art of your favorite artists in full-
 Getting Started
 ---
 
-To run spotify tiles, you will need to obtain a client ID and client secret from the Spotify Developer site (if I ever decide to host this application somewhere, users will not need to do this, of course).
+To run spotify tiles, you will need to obtain a client ID and client secret from the Spotify developer site (if I ever decide to host this application somewhere, users will not need to do this, of course). Set your redirect URI to http://localhost:8888/callback.
 
 After you have obtained your ID and secret, launch the application as follows:
 
