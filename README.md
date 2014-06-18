@@ -3,6 +3,8 @@ Spotify Tiles
 
 Spotify Tiles allows you to view the album art of your favorite artists in full-screen, tiled across your browser.
 
+Albums are selected at random using the user's playlists.
+
 Getting Started
 ---
 
