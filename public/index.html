@@ -3,8 +3,16 @@
     <head>
         <title>Spotify Tiles</title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+		<link rel="stylesheet" type="text/css" href="http://vnjs.net/www/project/freewall/example/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="http://vnjs.net/www/project/freewall/example/css/pinterest-style.css" />
+
+		<script type="text/javascript" src="http://vnjs.net/www/project/freewall/example/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="http://vnjs.net/www/project/freewall/freewall.js"></script>
+        
         <style type="text/css">
             body, html {
+                background: black;
                 height: 100%;
                 width: 100%;
                 margin: 0;
@@ -18,53 +26,41 @@
                 width: 100%;
                 margin-top: -10%;
             }
-            #loggedin {
-                display: none;
+            #spinner {
+                text-align: center;
+                position: absolute;
+                top: 50%;
+                height: 20%;
+                width: 100%;
+                margin-top: -10%;
             }
-            .text-overflow {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                width: 500px;
+            #freewall {
+                margin: 15px;
             }
+			.free-wall {
+				margin: 15px;
+			}
+			.brick {
+				width: 221.2px;
+			}
+			.brick img {
+				margin: 0px;
+				padding: 0px;
+				display: block;
+			}
         </style>
     </head>
 
     <body>
         <div id="login">
-            <h1>Welcome to Spotify Tiles</h1>
-            <br/>
-            <p><a href="/login" class="btn btn-primary">Authorize with Spotify</a></p>
+            <h1>Welcome to Spotify Tiles</h1><br/>
+            <p><a href="/login" class="btn btn-primary">Login with Spotify</a></p>
         </div>
-        <div class="container">
-            <div id="loggedin">
-                <!-- TODO replace with tiles/visualization, etc. -->
-                <div id="user-profile"></div>
-            </div>
+        <div id="spinner">
+            <h1>Loading, please wait. This might take a minute or two...</h1>
         </div>
+		<div id="freewall" class="free-wall"></div>
 
-        <script id="user-profile-template" type="text/x-handlebars-template">
-            <h1>Logged in as {{display_name}}</h1>
-            <div class="media">
-                <div class="pull-left">
-                    <img class="media-object" width="150" src="{{images.0.url}}" />
-                </div>
-                <div class="media-body">
-                    <dl class="dl-horizontal">
-                        <dt>Display name</dt><dd class="clearfix">{{display_name}}</dd>
-                        <dt>Id</dt><dd>{{id}}</dd>
-                        <dt>Email</dt><dd>{{email}}</dd>
-                        <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-                        <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-                        <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-                        <dt>Country</dt><dd>{{country}}</dd>
-                    </dl>
-                </div>
-            </div>
-        </script>
-
-        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script>
             (function() {
                 function getHashParams() {
@@ -77,25 +73,15 @@
                     return hashParams;
                 }
 
-                var userProfileSource = document.getElementById('user-profile-template').innerHTML,
-                        userProfileTemplate = Handlebars.compile(userProfileSource),
-                        userProfilePlaceholder = document.getElementById('user-profile');
-
                 var params = getHashParams();
                 var access_token = params.access_token;
 
+                $('#login').hide();
+                $('#spinner').hide();
+                $('#freewall').hide();
+
                 if (access_token) {
-                    $('#login').hide();
-                    $.ajax({
-                        url: 'https://api.spotify.com/v1/me',
-                        headers: {
-                            'Authorization': 'Bearer ' + access_token
-                        },
-                        success: function(response) {
-                            userProfilePlaceholder.innerHTML = userProfileTemplate(response);
-                            $('#loggedin').show();
-                        }
-                    });
+                    $('#spinner').show();
 
                     $.ajax({
                         url: '/tiles',
@@ -103,14 +89,30 @@
                             access_token: access_token
                         },
                         success: function(response) {
-                            // TODO need to do something with these images...
-                            console.log(response);
+                            var html = '';
+                            response.forEach(function(url) {
+                                html += '<div class="brick"><img src=' + url + ' width="100%"></div>'
+                            });
+                            document.getElementById('freewall').innerHTML = html;
+			                var wall = new freewall("#freewall");
+			                wall.reset({
+				                selector: '.brick',
+				                animate: true,
+				                cellW: 200,
+				                cellH: 'auto',
+				                onResize: function() {
+					                wall.fitWidth();
+				                }
+			                });
+                            wall.fitWidth();
+                            $('#spinner').hide();
+                            $('#freewall').show();
                         }
                     });
                 } else {
                     $('#login').show();
-                    $('#loggedin').hide();
                 }
             })();
         </script>
+    </body>
 </html>

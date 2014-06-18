@@ -3,6 +3,8 @@ Spotify Tiles
 
 Tiles lets you to view the album art of your favorite Spotify artists in full-screen, tiled across your browser. Album art is selected at random using your public playlists.
 
+ <img align="center" src="https://raw.githubusercontent.com/mpillar/spotify-files/master/public/example.png"/>
+
 Getting Started
 ---
 
@@ -12,12 +14,9 @@ After you have obtained your ID and secret, initialize the project with `npm ins
 
     node app.js <client_id> <client_secret>
 
-TODO
+Todo
 ---
 
-This is a work in progress.
-
-* Still need to complete the actual frontend (the backend work is done).
 * Use session instead of `access_token` URL parameter.
-
-README.md will be updated as this work is completed.
+* Load more album art when user reaches the bottom of the page.
+* Better loading message; do not hide spinner div until all the album art has loaded.

@@ -101,7 +101,9 @@ function getPlaylistImages(access_token, id, playlist, callback) {
             body['items'].forEach(function(item) {
                 if (item['track']['album']['images'] != undefined) {
                     item['track']['album']['images'].forEach(function(image) {
-                        images.push(image['url']);
+                        if (image['height'] > 200) {
+                            images.push(image['url']);
+                        }
                     });
                 }
             });
